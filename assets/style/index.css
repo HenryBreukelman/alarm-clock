@@ -26,20 +26,15 @@
 
 body {
   font-family: 'Nunito', sans-serif, Arial, sans-serif;
+  background-color: #18171F;
+  color: #fff;
 }
 
-/*
-  Header
-*/
-
-
+main {
+  height: calc(100vh);
+}
 
 /*
   Content
 */
 
-
-
-/*
-  Footer
-*/
