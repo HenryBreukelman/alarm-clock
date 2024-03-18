@@ -38,3 +38,29 @@ main {
   Content
 */
 
+.time {
+  font-size: 100px;
+  margin: 0;
+}
+
+.alarm {
+  margin-bottom: 30px;
+}
+
+input {
+  height: 40px;
+  border-radius: 50px;
+  margin: 5px;
+  text-align: center;
+  color: #fff;
+}
+
+.hour, .minute {
+  width: 80px;
+  background-color: rgba(255 255 255 / 0.1);
+}
+
+.set-alarm {
+  width: 150px;
+  background-color: #06a23c;
+}
