@@ -5,34 +5,40 @@ const time = document.querySelector('.time');
 const alarm = document.querySelector('.alarm')
 const newAlarm = document.querySelector('.set-alarm');
 
-let alarmTime = '15:08';
+let alarmTime = '';
 
 
 //setting time
 function setTime() {
   const timeNow = new Date();
   time.innerText = timeNow.toString().substring(16, 21);
-  trigerAlarm;
+  triggerAlarm();
 }
 
 //set alarm
 function setAlarm() {
-  const hour = document.querySelector(('.hour').value);
-  const minute = document.querySelector(('.minute').value);
-  if (true) {
-    alarmTime = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
-    console.log(hour);
-    console.log(minute);
-    alarm.innerText = alarmTime;
+  const inputHour = document.querySelector('.hour');
+  const inputMinute = document.querySelector('.minute');
+  const hour = parseInt(inputHour.value);
+  const minute = parseInt(inputMinute.value);
+
+  if (isNaN(hour) || hour < 0 || hour > 23.9 ) {
+    inputHour.style.border = '1px solid #e20000';
+  } else if (isNaN(minute) || minute < 0 || minute > 59.9) {
+    inputMinute.style.border = '1px solid #e20000';
   } else {
-    alert('Invalid time! Please enter valid hour (0-23) and minute (0-59).');
+    inputHour.style.border = '';
+    inputMinute.style.border = '';
+    alarmTime = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+    alarm.innerText = alarmTime;
   }
 }
 
 //triger alarm
-function trigerAlarm() {
+function triggerAlarm() {
   if (time.innerText === alarmTime) {
-    console.log(hi);
+    console.log('hi');
+    console.log(alarmTime);
   }
 }
 
