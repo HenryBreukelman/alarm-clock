@@ -4,22 +4,22 @@
 const time = document.querySelector('.time');
 const alarm = document.querySelector('.alarm')
 const newAlarm = document.querySelector('.set-alarm');
-const stopAlarm = document.querySelector('body');
-
-let alarmTime = '';
+const stopAlarm = document.querySelector('.stop');
 const alarmSound = new Audio('./assets/media/alarm.mp3')
 alarmSound.type = "audio/mp3"
-
+let alarmTime = '';
+let alarmSet = false
 
 //setting time
 function setTime() {
   const timeNow = new Date();
   time.innerText = timeNow.toString().substring(16, 21);
   triggerAlarm();
+  console.log(alarmSet)
 }
 
 //set alarm
-function setAlarm() {
+function checkAlarm() {
   const inputHour = document.querySelector('.hour');
   const inputMinute = document.querySelector('.minute');
   const hour = parseInt(inputHour.value);
@@ -34,12 +34,23 @@ function setAlarm() {
     inputMinute.style.border = '';
     alarmTime = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
     alarm.innerText = alarmTime;
+    setAlarm();
+  }
+}
+
+function setAlarm() {
+  if(time.innerText === alarmTime) {
+    setTimeout(() => {
+      alarmSet = true;
+    }, 60000);
+  } else {
+    alarmSet = true
   }
 }
 
 //triger and sto[ alarm
 function triggerAlarm() {
-  if (time.innerText === alarmTime) {
+  if (time.innerText === alarmTime && alarmSet === true) {
     alarmSound.play();
   }
 }
@@ -47,11 +58,12 @@ function triggerAlarm() {
 function stopAlarmFunc() {
   alarmSound.pause();
   alarmSound.currentTime = 0;
-  console.log('stop')
+  alarmSet = false
+  setAlarm
 }
 
 //event listeners
-newAlarm.addEventListener('click', setAlarm);
+newAlarm.addEventListener('click', checkAlarm);
 stopAlarm.addEventListener('click', stopAlarmFunc)
 window.addEventListener('load', setTime);
 setInterval(setTime, 2000);

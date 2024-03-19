@@ -65,3 +65,8 @@ input {
   width: 150px;
   background-color: #06a23c;
 }
+
+.stop {
+  width: 340px;
+  background-color: #e20000;
+}
