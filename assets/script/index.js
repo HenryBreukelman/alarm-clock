@@ -15,7 +15,6 @@ function setTime() {
   const timeNow = new Date();
   time.innerText = timeNow.toString().substring(16, 21);
   triggerAlarm();
-  console.log(alarmSet)
 }
 
 //set alarm
@@ -39,16 +38,18 @@ function checkAlarm() {
 }
 
 function setAlarm() {
+  const date = new Date();
+  const seconds = 60 - date.getSeconds();
   if(time.innerText === alarmTime) {
     setTimeout(() => {
       alarmSet = true;
-    }, 60000);
+    }, seconds * 1000);
   } else {
-    alarmSet = true
+    alarmSet = true;
   }
 }
 
-//triger and sto[ alarm
+//triger and stop alarm
 function triggerAlarm() {
   if (time.innerText === alarmTime && alarmSet === true) {
     alarmSound.play();
@@ -58,13 +59,13 @@ function triggerAlarm() {
 function stopAlarmFunc() {
   alarmSound.pause();
   alarmSound.currentTime = 0;
-  alarmSet = false
-  setAlarm
+  alarmSet = false;
+  setAlarm();
 }
 
 //event listeners
 newAlarm.addEventListener('click', checkAlarm);
-stopAlarm.addEventListener('click', stopAlarmFunc)
+stopAlarm.addEventListener('click', stopAlarmFunc);
 window.addEventListener('load', setTime);
 setInterval(setTime, 2000);
 
