@@ -4,8 +4,11 @@
 const time = document.querySelector('.time');
 const alarm = document.querySelector('.alarm')
 const newAlarm = document.querySelector('.set-alarm');
+const stopAlarm = document.querySelector('body');
 
 let alarmTime = '';
+const alarmSound = new Audio('./assets/media/alarm.mp3')
+alarmSound.type = "audio/mp3"
 
 
 //setting time
@@ -34,16 +37,22 @@ function setAlarm() {
   }
 }
 
-//triger alarm
+//triger and sto[ alarm
 function triggerAlarm() {
   if (time.innerText === alarmTime) {
-    console.log('hi');
-    console.log(alarmTime);
+    alarmSound.play();
   }
+}
+
+function stopAlarmFunc() {
+  alarmSound.pause();
+  alarmSound.currentTime = 0;
+  console.log('stop')
 }
 
 //event listeners
 newAlarm.addEventListener('click', setAlarm);
-
+stopAlarm.addEventListener('click', stopAlarmFunc)
 window.addEventListener('load', setTime);
 setInterval(setTime, 2000);
+
